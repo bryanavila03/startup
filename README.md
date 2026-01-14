@@ -26,7 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 I'm going to make a website for a local pest control business that my dad is in charge of. I want to create a website that will allow customers to create/log in to their accounts, see their upcoming appointments, and view what services are offered. Under the services offered, users can see a descriptive subpage of their current services and how much they cost. Users will have access to a dashboard where they can see their appointment history, and customize their address/ phone number, etc. (can be simplified to meet the class requirements)
 ### Design
 
-![Design image](260sketch.pdf)
+![Design image](260sketch.jpg)
 
 Top Banner with phone number. The homepage will have a header with a logo and navigation (Services | About Us | Contact | Sign in)
 Followed by Deals/ Promotions.
