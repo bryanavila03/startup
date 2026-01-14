@@ -46,9 +46,10 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Customer Accounts: Users can log in and have their individual accounts
+- Appointments: Customers can schedule appointments and see current appointments 
+- Service Information/ Current Weather: Customers can see available services with updated weather.
+
 
 ### Technologies
 
