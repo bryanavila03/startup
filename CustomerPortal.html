@@ -28,15 +28,25 @@
 
       <h3>Customer Portal</h3>
       <p>Welcome to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
+      <p>Current Personal Information</p>
+
       <ul>
-        <li><a href="appointments.html">Manage Appointments</a></li>
-        <li><a href="history.html">View Service History</a></li>
-        <li><a href="updateinfo.html">Update Personal Information</a></li>    
+        <li>Name: John Doe</li>
+        <li>Email: john.doe@example.com</li>
+        <li>Phone: (###) ###-####</li><!--database-->
+        <li>Address: 1234 Elm Street, Phoenix, AZ 85001</li>
+        
         </ul>
-        <p>Current Services</p>
+        <p>Service History</p>
         <ul>
-        <li>Service 1: Residential Pest Control - Next Service Date: MM/DD/YYYY</li> <!--Example of service history dummy database-->
-        <li>Service 2: Termite Treatment - Next Service Date: MM/DD/YYYY</li>
+        <li>Service 1: Residential Pest Control on MM/DD/YYYY - Status: Completed</li>
+        <li>Service 2: Termite Treatment on MM/DD/YYYY - Status: Completed</li>
+        <li>Service 3: Rodent Control on MM/DD/YYYY - Status: Scheduled
+        </ul>
+        <p>Current Updates</p>
+        <ul>
+        <li>Update 1: Your last service was completed on MM/DD/YYYY. Please rate your experience.</li> <!--Websocket, so the real time updates are for the customer when you log in is that ok?-->
+        <li>Update 2: New promotions are available! Check out our latest deals on pest control services.</li>
         </ul>
     </main>
     <footer>
