@@ -2,7 +2,16 @@
 .navbar ul {
     display : flex;
     justify-content: right;
+    gap: 5px;
+    list-style-type: none;
     
+
+}
+.navbar a {
+    color: #F3F4F6;
+    text-decoration: none;
+    padding: 0 20px;
+    font-weight: 850;
 
 }
 
