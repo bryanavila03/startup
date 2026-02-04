@@ -87,12 +87,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - Used a dark theme, and spaced out all my elements. Nothing was overflowing, everything had a place.
+- [x] **Use of a CSS framework** - I used Bootstrap for buttons!
+- [x] **All visual elements styled using CSS** - I removed styling from my html and used a CSS file for my customization.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - I used Flexbox for my navigation bar, so everything is displayed properly when the window size changes.
+- [x] **Use of a imported font** - Used an imported font from Google Fonts and used it on my whole page.
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - My different selectors were, element selectors (body,headings), class selectors (.site-navbar, .main-image), ID selector(#home-link) and pseudo selector(a:hover)
 
 ## 🚀 React part 1: Routing deliverable
 
