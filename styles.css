@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-.navbar ul {
+.site-navbar ul {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
@@ -8,7 +8,7 @@
     margin: 0;
 
 }
-.navbar a {
+.site-navbar a {
     color: #F3F4F6;
     text-decoration: none;
     font-weight: 800;
