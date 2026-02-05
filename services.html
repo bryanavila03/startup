@@ -45,35 +45,34 @@
       <h3>Let's take care of your pest problem.</h3>
       <p>Fill out the form below or call us at (###) ###-#### to schedule an appointment with one of our experts.</p>
       <form method="get" action="play.html">
+        <div class="mb-3">
+          <label class="form-label">How can we help you?</label>
+          <input type="text" class="form-control" placeholder="Brief description of your pest problem" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">First Name*</label>
+          <input type="text" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Last Name*</label>
+          <input type="text" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email Address*</label>
+          <input type="email" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone Number*</label>
+          <input type="tel" class="form-control" required/>  
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Zip Code*</label>
+            <input type="text" class="form-control" required/>
+        </div>
 
-        <div>
-          <span>How can we help you?</span>
-          <input type="text" placeholder="Brief description of your pest problem" />
-        </div>
-        <div>
-          <span>First Name*</span>
-          <input type="text" required/>
-        </div>
-        <div>
-          <span>Last Name*</span>
-          <input type="text" required/>
-        </div>
-        <div>
-          <span>Email Address*</span>
-          <input type="email"  required/>
-        </div>
-        <div>
-          <span>Phone Number*</span>
-          <input type="tel"  required/>  
-        </div>
-        <div>
-            <span>Zip Code*</span>
-            <input type="text" required/>
-        </div>
-
-        <button type="submit">☐ I agree to be contacted by Phoenix Pest Control by phone or text regarding my request. Message and data rates may apply.</button>
+        <button type="submit" class="btn btn-primary">I agree to be contacted by Phoenix Pest Control by phone or text regarding my request. Message and data rates may apply.</button>
         
-        <button type="submit">Request Service</button>
+        <button type="submit" class="btn btn-success">Request Service</button>
     </form>
     </main>
 
