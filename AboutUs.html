@@ -29,9 +29,9 @@
     </header>
 
     <main>
-      <p>"Current Weather: 89 degrees F"</p> <!--Weather widget placeholder-->
+      <p class="mt-5 mb-5">"Current Weather: 89 degrees F"</p> <!--Weather widget placeholder-->
       <img src = "ant.jpg" alt = "Pest Control Image" class = "main-image">
-      <h2>About Us</h2>
+      <h2 class="mt-5 mb-5">About Us</h2>
       <ul>
         <li><p>Phoenix Pest Control is a family-owned and operated business that has been serving the Phoenix area for over 10 years. We are committed to providing high-quality pest control services with a focus on safety and environmental responsibility.</p></li>
         <li><p>Our team of licensed professionals is dedicated to delivering effective solutions tailored to your specific needs. We use the latest techniques and products to ensure your home or business remains pest-free.</p></li>
@@ -40,7 +40,7 @@
       </ul>
       
 
-      <h3>Let's take care of your pest problem.</h3>
+      <h3 class="mt-5 mb-5">Let's take care of your pest problem.</h3>
       
       <p>Fill out the form below or call us at (###) ###-#### to schedule an appointment with one of our experts.</p>
       <form method="get" action="play.html">
@@ -69,8 +69,11 @@
             <input type="text" class="form-control" required/>
         </div>
 
-        <button type="submit" class="btn btn-primary">I agree to be contacted by Phoenix Pest Control by phone or text regarding my request. Message and data rates may apply.</button>
-        
+        <div class="form-check ">
+        <input class="form-check-input" type="checkbox" id="remember-me" />
+        <label class="form-check-label" for="remember-me">I agree to be contacted by Phoenix Pest Control by phone or text regarding my request. Message and data rates may apply.</label>
+        </div> 
+        <br />       
         <button type="submit" class="btn btn-success">Request Service</button>
     </form>
     </main>

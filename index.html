@@ -27,10 +27,11 @@
     </header>
 
     <main>
-      <p>"Current Weather: 89 degrees F"</p> <!--Weather widget placeholder-->
-      <h1 style = "text-align: Center;">Current Deals / Promotions $$$</h1> <!--Middle Banner-->
+    
+      <p class="mt-3">"Current Weather: 89 degrees F"</p> <!--Weather widget placeholder-->
+      <h1 class="mb-5">Current Deals / Promotions $$$</h1> <!--Middle Banner-->
       <img src = "ant.jpg" alt = "Pest Control Image" class = "main-image">
-      <h2>Popular Services</h2>
+      <h2 class="mt-5 mb-5">Popular Services</h2>
       <ul>
         <li><a href="services.html">Residential Pest Control</a></li>
         <li><a href="services.html">Commercial Pest Control</a></li>
@@ -38,14 +39,14 @@
         <li><a href="services.html">Rodent Control</a></li>
         <li><a href="services.html">Bed Bug Extermination</a></li>
       </ul>
-      <h2>Reviews</h2>
+      <h2 class="mt-5 mb-5">Reviews</h2>
         <ul>
           <li>"Great Service!" - ***</li> <!--Will be  horizontal-->
           <li>"Very Professional!" - ***</li>
           <li>"Affordable Prices!" - ***</li>
         </ul>
 
-      <h3>Let's take care of your pest problem.</h3>
+      <h3 class="mt-5 mb-5">Let's take care of your pest problem.</h3>
       <p>Fill out the form below or call us at (###) ###-#### to schedule an appointment with one of our experts.</p>
       
       <form method="get" action="play.html">
@@ -73,12 +74,15 @@
             <label class="form-label">Zip Code*</label>
             <input type="text" class="form-control" required/>
         </div>
-
-        <button type="submit" class="btn btn-primary">I agree to be contacted by Phoenix Pest Control by phone or text regarding my request. Message and data rates may apply.</button>
-        
+        <div class="form-check ">
+        <input class="form-check-input" type="checkbox" id="remember-me" />
+        <label class="form-check-label" for="remember-me">I agree to be contacted by Phoenix Pest Control by phone or text regarding my request. Message and data rates may apply.</label>
+        </div>
+        <br />        
         <button type="submit" class="btn btn-success">Request Service</button>
     </form>
     </main>
+
     <footer>
       <hr />
       <span class="text-reset">Bryan Avila</span>
