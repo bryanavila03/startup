@@ -8,18 +8,10 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bryanavila03/startup.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/bryanavila03/startup/issues"
-  },
-  "homepage": "https://github.com/bryanavila03/startup#readme",
   "devDependencies": {
     "vite": "^7.3.1"
   }
