@@ -1,0 +1,26 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "[My Notes](notes.md)\r > [!NOTE]\r > This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item. TEST",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryanavila03/startup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bryanavila03/startup/issues"
+  },
+  "homepage": "https://github.com/bryanavila03/startup#readme",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}
