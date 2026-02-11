@@ -2,6 +2,16 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './Login/Login';
+import { Services } from './Services/Services';
+import { AboutUs } from './AboutUs/AboutUs';
+import { ContactUs } from './ContactUs/ContactUs';
+import { SignIn } from './SignIn/SignIn';
+import { CustomerPortal } from './CustomerPortal/CustomerPortal';
+
+
+
 export default function App() {
   return <div className="app bg-dark text-light">
     <header>

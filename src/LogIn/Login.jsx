@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Login() {
+export function LogIn() {
   return (
     <main className="container-fluid bg-secondary text-center">
       <div>login displayed here</div>
