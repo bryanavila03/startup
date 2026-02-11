@@ -20,11 +20,11 @@ export default function App() {
       <h1>Schedule an Appointment Today! (###) ###-####</h1>
       <nav className = "site-navbar">
          <ul>
-          <li id="home-link"><NavLink href="/">Phoenix Pest Control</NavLink></li>
-          <li><NavLink href="/Services">Services</NavLink></li>
-          <li><NavLink href="/AboutUs">About Us</NavLink></li>
-          <li><NavLink href="/ContactUs">Contact Us</NavLink></li>
-          <li><NavLink href="/SignIn">Sign In</NavLink></li>      
+          <li id="home-link"><NavLink to ="/">Phoenix Pest Control</NavLink></li>
+          <li><NavLink to="/Services">Services</NavLink></li>
+          <li><NavLink to="/AboutUs">About Us</NavLink></li>
+          <li><NavLink to="/ContactUs">Contact Us</NavLink></li>
+          <li><NavLink to="/SignIn">Sign In</NavLink></li>      
         </ul>
       </nav>
 
@@ -33,7 +33,6 @@ export default function App() {
 <Routes>
   <Route path='/' element={<Login />} exact />
   <Route path='/Services' element={<Services />} />
-  <Route path='/Scores' element={<Scores />} />
   <Route path='/AboutUs' element={<AboutUs />} />
   <Route path='/ContactUs' element={<ContactUs />} />
   <Route path='/SignIn' element={<SignIn />} />
@@ -48,7 +47,7 @@ export default function App() {
       <br />
        <a href="https://github.com/bryanavila03/startup.git">GitHub</a>
     </footer>
-    </div>;
+    </div>
   </BrowserRouter>
   );
 }
