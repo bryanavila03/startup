@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export function Services() {
   return (
@@ -50,7 +51,7 @@ export function Services() {
           <div className = "card-body">
             <h5 className="card-title">Urgent Service</h5>
             <p className="card-text">Need immediate assistance? We offer urgent pest control services. </p>
-            <a href="ContactUs.html" className="btn btn-primary">Contact Us</a>
+            <NavLink to="/ContactUs" className="btn btn-primary">Contact Us</NavLink>
           </div>
         </div>
       </div>
