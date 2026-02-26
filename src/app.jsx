@@ -45,7 +45,11 @@ export default function App() {
   <Route path='/AboutUs' element={<AboutUs />} />
   <Route path='/ContactUs' element={<ContactUs />} />
   <Route path='/SignIn' element={<SignIn />} />
-  <Route path='/CustomerPortal' element={<CustomerPortal />} />
+  <Route path='/CustomerPortal' element={
+    user
+      ? <CustomerPortal user={user} setUser={setUser} />
+      : <SignIn setUser={setUser} /> 
+  } />
   <Route path='*' element={<NotFound />} />
 
 </Routes>
