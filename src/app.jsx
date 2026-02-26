@@ -13,6 +13,15 @@ import { CustomerPortal } from './CustomerPortal/CustomerPortal';
 
 
 export default function App() {
+
+    const [user, setUser] = React.useState(null);
+
+     React.useEffect(() => {
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+        setUser(savedUser);
+      }
+    }, []);
   return (
   <BrowserRouter>
   <div className="app bg-dark text-light">
