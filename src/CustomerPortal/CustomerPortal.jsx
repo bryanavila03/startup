@@ -16,7 +16,7 @@ export function CustomerPortal({ user, setUser, weather }) {
       <img src = "ant.jpg" alt = "Pest Control Image" className = "main-image"/>
 
       <h2 className="mt-5 mb-5">Customer Portal</h2>
-      <p>Welcome to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
+      <p>Welcome {user} to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
       <p>Current Personal Information</p>
 
       <ul>
