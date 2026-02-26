@@ -11,12 +11,13 @@ export function CustomerPortal({ user, setUser, weather }) {
 
   return (
     <main className="container">
+      <h1 className="mt-5 mb-5">Welcome, {user}!</h1>
     <p className="mt-5 mb-5">{weather.outlook}</p>  
 
       <img src = "ant.jpg" alt = "Pest Control Image" className = "main-image"/>
 
       <h2 className="mt-5 mb-5">Customer Portal</h2>
-      <p>Welcome {user} to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
+      <p>Welcome to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
       <p>Current Personal Information</p>
 
       <ul>
