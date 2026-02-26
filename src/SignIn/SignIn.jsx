@@ -1,6 +1,16 @@
 import React from 'react';
 
-export function SignIn() {
+export function SignIn({ setUser }) {
+  const [username, setUsername] = React.useState('');
+
+  const handleSignIn = () => {
+    if (username.trim() !== '') {
+      setUser(username);
+      localStorage.setItem('user', username.trim());
+      window.location.href = '/CustomerPortal';
+    } else {
+      alert('Please enter a username to sign in.');
+    }};
   return (
     <main className="container">
     <p className="mt-5 mb-5">"Current Weather: 89 degrees F"</p> 
@@ -9,10 +19,12 @@ export function SignIn() {
 
       <h2 className="mt-5 mb-5">Sign In</h2>
 
-      <form method="get" action="play.html">
+      <form className="sign-in-form">
         <div>
           <label className="form-label">Username</label>
-          <input type="text" id="username" className="form-control" placeholder="Enter your username" />
+          <input type="text" id="username" className="form-control" placeholder="Enter your username" 
+          value={username} 
+          onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div>
           <label htmlFor="password" className="form-label">Password</label>
@@ -23,7 +35,7 @@ export function SignIn() {
         <label className="form-check-label" htmlFor="remember-me">Remember Me</label>
         </div>
         <br />
-        <button type="button" className="btn btn-success" onClick={() => window.location.href='/CustomerPortal'}>Sign In</button> 
+        <button type="button" className="btn btn-success" onClick={handleSignIn}>Sign In</button> 
     </form>
     </main>
   );
