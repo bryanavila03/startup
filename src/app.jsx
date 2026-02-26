@@ -24,11 +24,27 @@ export default function App() {
     }, []);
 
     const [weather, setWeather] = React.useState({
-      temperature: 89,
-      condition: 'Sunny',
-    outlook: 'Clear skies with a gentle breeze. Perfect weather for pest control services!',
+      temperature: null,
+      condition: 'Unknown',
+      outlook: 'Weather data is loading...' 
     });
-    
+    React.useEffect(() => {
+      const interval = setInterval(() => {
+        const newTemperature = Math.floor(Math.random() * 40) + 60;
+        const conditions = ['Sunny', 'Cloudy', 'Rainy', 'Windy'];
+        const newCondition = conditions[Math.floor(Math.random() * conditions.length)];
+        const newOutlook = `The weather is currently ${newCondition.toLowerCase()} with a temperature of ${newTemperature} degrees F.`;
+        setWeather({
+          temperature: newTemperature,
+          condition: newCondition,
+          outlook: newOutlook
+        });
+       },1000);
+
+
+      return () => clearInterval(interval);
+    }, []);
+
   return (
   <BrowserRouter>
   <div className="app bg-dark text-light">
@@ -47,22 +63,22 @@ export default function App() {
     </header>
 
 <Routes>
-  <Route path='/' element={<Login />} exact />
-  <Route path='/Services' element={<Services />} />
-  <Route path='/AboutUs' element={<AboutUs />} />
-  <Route path='/ContactUs' element={<ContactUs />} />
+  <Route path='/' element={<Login weather={weather} />} exact />
+  <Route path='/Services' element={<Services weather={weather} />} />
+  <Route path='/AboutUs' element={<AboutUs weather={weather} />} />
+  <Route path='/ContactUs' element={<ContactUs weather={weather} />} />
   <Route path='/SignIn' element={
     user
-      ? <CustomerPortal user={user} setUser={setUser} />
-      : <SignIn setUser={setUser} /> 
+      ? <CustomerPortal user={user} setUser={setUser} weather={weather} />
+      : <SignIn setUser={setUser} weather={weather}/> 
   } />
    
 
 
   <Route path='/CustomerPortal' element={
     user
-      ? <CustomerPortal user={user} setUser={setUser} />
-      : <SignIn setUser={setUser} /> 
+      ? <CustomerPortal user={user} setUser={setUser} weather={weather} />
+      : <SignIn setUser={setUser} weather={weather}/> 
   } />
   <Route path='*' element={<NotFound />} />
 

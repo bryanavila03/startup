@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function CustomerPortal({ user, setUser }) {
+export function CustomerPortal({ user, setUser, weather }) {
 
   const handleSignOut = () => {
     if (user) {
@@ -11,7 +11,7 @@ export function CustomerPortal({ user, setUser }) {
 
   return (
     <main className="container">
-    <p className="mt-5 mb-5">Current Weather: 89 degrees F</p> 
+    <p className="mt-5 mb-5">{weather.outlook}</p>  
 
       <img src = "ant.jpg" alt = "Pest Control Image" className = "main-image"/>
 

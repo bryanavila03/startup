@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function AboutUs() {
+export function AboutUs({weather}) {
   return (
       <main className="container">
-      <p className="mt-5 mb-5">"Current Weather: 89 degrees F"</p> 
+      <p className="mt-5 mb-5">{weather.outlook}</p> 
       <img src = "ant.jpg" alt = "Pest Control Image" className = "main-image"></img>
       <h2 className="mt-5 mb-5">About Us</h2>
       <ul>

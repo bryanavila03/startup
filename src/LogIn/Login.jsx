@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export function Login() {
+export function Login({ weather }) {
   return (
     <main className="container">
     
-      <p className="mt-5 mb-5">"Current Weather: 89 degrees F"</p> 
+      <p className="mt-5 mb-5">{weather.outlook}</p> 
       <h2 className="mb-5">Current Deals / Promotions $$$</h2> 
       <img src = "ant.jpg" alt = "Pest Control Image" className = "main-image"/>
       
