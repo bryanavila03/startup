@@ -1,13 +1,21 @@
 import React from 'react';
 
-export function CustomerPortal() {
+export function CustomerPortal({ user, setUser }) {
+
+  const handleSignOut = () => {
+    if (user) {
+      setUser(null);
+      localStorage.removeItem('user');
+      window.location.href = '/SignIn';
+    }};
+
   return (
-    <main class="container">
-    <p class="mt-5 mb-5">"Current Weather: 89 degrees F"</p> 
+    <main className="container">
+    <p className="mt-5 mb-5">Current Weather: 89 degrees F</p> 
 
-      <img src = "ant.jpg" alt = "Pest Control Image" class = "main-image"></img>
+      <img src = "ant.jpg" alt = "Pest Control Image" className = "main-image"/>
 
-      <h2 class="mt-5 mb-5">Customer Portal</h2>
+      <h2 className="mt-5 mb-5">Customer Portal</h2>
       <p>Welcome to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
       <p>Current Personal Information</p>
 
@@ -29,6 +37,7 @@ export function CustomerPortal() {
         <li>Update 1: Your last service was completed on MM/DD/YYYY. Please rate your experience.</li> 
         <li>Update 2: New promotions are available! Check out our latest deals on pest control services.</li>
         </ul>
+        <button type="button" className="btn btn-danger mt-3 mb-3" onClick={handleSignOut}>Sign Out</button>
     </main>
   );
 }

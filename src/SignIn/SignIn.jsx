@@ -13,7 +13,7 @@ export function SignIn({ setUser }) {
     }};
   return (
     <main className="container">
-    <p className="mt-5 mb-5">"Current Weather: 89 degrees F"</p> 
+    <p className="mt-5 mb-5">Current Weather: 89 degrees F</p> 
 
       <img src = "ant.jpg" alt = "Pest Control Image" className = "main-image"/>
 
