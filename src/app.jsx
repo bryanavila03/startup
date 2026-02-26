@@ -22,6 +22,13 @@ export default function App() {
         setUser(savedUser);
       }
     }, []);
+
+    const [weather, setWeather] = React.useState({
+      temperature: 89,
+      condition: 'Sunny',
+    outlook: 'Clear skies with a gentle breeze. Perfect weather for pest control services!',
+    });
+    
   return (
   <BrowserRouter>
   <div className="app bg-dark text-light">
