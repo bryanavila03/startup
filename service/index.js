@@ -11,7 +11,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
-app.get('/ping', (req, res) => {
+let users = [];
+
+const apiRouter = express.Router();
+app.use('/api', apiRouter);
+
+apiRouter.get('/ping', (req, res) => {
   res.json({ message: 'Server working!' });
 });
 
@@ -19,6 +24,4 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-let users = [];
-const apiRouter = express.Router();
-app.use('/api', apiRouter);
+
