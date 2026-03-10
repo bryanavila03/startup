@@ -7,6 +7,7 @@ export function Login({ weather }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    e.target.reset();
   };
 
 

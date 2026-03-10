@@ -56,8 +56,18 @@ export default function App() {
           <li><NavLink to="/Services">Services</NavLink></li>
           <li><NavLink to="/AboutUs">About Us</NavLink></li>
           <li><NavLink to="/ContactUs">Contact Us</NavLink></li>
-          <li><NavLink to="/SignIn">Sign In</NavLink></li>      
-        </ul>
+            {!user && (
+                <li>
+                  <NavLink to="/SignIn">Sign In</NavLink>
+                </li>
+              )}
+
+              {user && (
+                <li>
+                  <NavLink to="/CustomerPortal">Customer Portal</NavLink>
+                </li>
+              )}        
+              </ul>
       </nav>
 
     </header>
