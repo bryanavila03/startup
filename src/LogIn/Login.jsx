@@ -92,7 +92,7 @@ export function Login({ weather }) {
       
       {submitted && (
         <div className="alert alert-success" role="alert">
-          Thank you! Your request has been submitted.A Phoenix Pest Control specialist will contact you shortly.
+          Thank you! Your request has been submitted. A Phoenix Pest Control specialist will contact you shortly.
         </div>
       )}
       <form onSubmit={handleSubmit}>

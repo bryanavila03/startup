@@ -1,6 +1,14 @@
 import React from 'react';
 
 export function ContactUs({weather}) {
+
+  const [submitted, setSubmitted] = React.useState(false);
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setSubmitted(true);
+      e.target.reset(); 
+    };
   return (
     <main className="container">
      <p className="mt-5 mb-5">{weather.outlook}</p>
@@ -15,7 +23,14 @@ export function ContactUs({weather}) {
 
       <h3 className="mt-5 mb-5">Let's take care of your pest problem.</h3>
       <p>Fill out the form below or call us at (###) ###-#### to schedule an appointment with one of our experts.</p>
-      <form method="get" action="play.html">
+       
+       {submitted && (
+        <div className="alert alert-success" role="alert">
+          Thank you! Your request has been submitted. A Phoenix Pest Control specialist will contact you shortly.
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">How can we help you?</label>
           <input type="text" className="form-control" placeholder="Brief description of your pest problem" />
