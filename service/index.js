@@ -20,8 +20,28 @@ apiRouter.get('/ping', (req, res) => {
   res.json({ message: 'Server working!' });
 });
 
+apiRouter.post('/auth/create', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const existingUser = users.find((user) => user.email === email);
+    if (existingUser) {
+        return res.status(409).json({ message: 'User already exists' });
+    }
+
+    const passwordHash = bcrypt.hashSync(password, 10);
+    
+    const user = {
+        email: email,
+        passwordHash: passwordHash,
+        id: uuid.v4(),
+    };
+    users.push(user);
+    res.send({ email: user.email, message: 'User created successfully' });
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
 
 
