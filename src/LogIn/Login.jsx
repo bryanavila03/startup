@@ -2,6 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export function Login({ weather }) {
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+
   return (
     <main className="container">
     
@@ -81,7 +89,12 @@ export function Login({ weather }) {
      <h3 className="mt-5 mb-5">Let's take care of your pest problem.</h3>   
       <p>Fill out the form below or call us at (###) ###-#### to schedule an appointment with one of our experts.</p>
       
-      <form method="get" action="play.html">
+      {submitted && (
+        <div className="alert alert-success" role="alert">
+          Thank you! Your request has been submitted.A Phoenix Pest Control specialist will contact you shortly.
+        </div>
+      )}
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">How can we help you?</label>
           <input type="text" className="form-control" placeholder="Brief description of your pest problem" />
@@ -107,7 +120,7 @@ export function Login({ weather }) {
             <input type="text" className="form-control" required/>
         </div>
         <div className="form-check ">
-        <input className="form-check-input" type="checkbox" id="remember-me" />
+        <input className="form-check-input" type="checkbox" id="remember-me" required/>
         <label className="form-check-label" htmlFor="remember-me">I agree to be contacted by Phoenix Pest Control by phone or text regarding my request. Message and data rates may apply.</label>
         </div>
         <br />        
