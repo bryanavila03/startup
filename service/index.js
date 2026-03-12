@@ -13,6 +13,9 @@ app.use(express.static('public'));
 
 let users = [];
 
+const authCookieName = 'token';
+
+
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
