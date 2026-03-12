@@ -70,6 +70,9 @@ function verifyAuthToken(req, res, next) {
     }
     next();
 }
+apiRouter.get('/customer', verifyAuthToken, (req, res) => {
+    res.send({ data: 'Welcome to the Customer Portal!' });
+});
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
