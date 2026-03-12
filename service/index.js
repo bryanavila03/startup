@@ -39,6 +39,20 @@ apiRouter.post('/auth/create', (req, res) => {
     res.send({ email: user.email, message: 'User created successfully' });
 });
 
+apiRouter.post('/auth/login', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = users.find((user) => user.email === email);
+    if (!user) {
+        return res.status(401).json({ message: 'Invalid email or password' });
+    }
+    const validPassword = bcrypt.compareSync(password, user.passwordHash);
+    if (!validPassword) {
+        return res.status(401).json({ message: 'Invalid email or password' });
+    }
+    res.send({ email: user.email, message: 'Login successful' });
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
