@@ -73,6 +73,16 @@ function verifyAuthToken(req, res, next) {
 apiRouter.get('/customer', verifyAuthToken, (req, res) => {
     res.send({ data: 'Welcome to the Customer Portal!' });
 });
+
+apiRouter.delete('/auth/logout', (req, res) => {
+    const token = req.cookies[authCookieName];
+    const user = users.find((user) => user.token === token);
+    if (user) {
+        delete user.token;
+    }
+    res.clearCookie(authCookieName);
+    res.send({ message: 'Logout successful' });
+});
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
