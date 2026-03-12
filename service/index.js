@@ -62,6 +62,14 @@ apiRouter.post('/auth/login', (req, res) => {
     res.send({ email: user.email, message: 'Login successful' });
 });
 
+function verifyAuthToken(req, res, next) {
+    const token = req.cookies[authCookieName];
+    const user = users.find((user) => user.token === token);
+    if (!user) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    next();
+}
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
