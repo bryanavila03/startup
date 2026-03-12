@@ -46,6 +46,7 @@ apiRouter.post('/auth/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const user = users.find((user) => user.email === email);
+
     if (!user) {
         return res.status(401).json({ message: 'Invalid email or password' });
     }
@@ -53,6 +54,11 @@ apiRouter.post('/auth/login', (req, res) => {
     if (!validPassword) {
         return res.status(401).json({ message: 'Invalid email or password' });
     }
+
+    const token = uuid.v4();
+    user.token = token;
+    res.cookie(authCookieName, token, 
+      { httpOnly: true, expires: new Date(Date.now() + 24 * 60 * 60 * 1000) });
     res.send({ email: user.email, message: 'Login successful' });
 });
 
