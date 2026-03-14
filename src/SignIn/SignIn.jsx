@@ -1,13 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function SignIn({ setUser,weather }) {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [isRegistered, setIsRegistered] = React.useState(false);
+  const navigate = useNavigate();
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (endpoint) => {
 
-    const endpoint = isRegistered ? '/api/auth/login' : '/api/auth/create';
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -16,9 +16,10 @@ export function SignIn({ setUser,weather }) {
     if (response.ok) {
       setUser(username);
       localStorage.setItem('user', username);
-      window.location.href = '/CustomerPortal';
+      navigate('/CustomerPortal');    
     } else {
-      alert('Sign in failed. Please check your credentials and try again.');
+      const data = await response.json();
+      alert(data.message || 'An error occurred');
     }
   };
     
@@ -50,11 +51,11 @@ export function SignIn({ setUser,weather }) {
         <label className="form-check-label" htmlFor="remember-me">Remember Me</label>
         </div>
         <br />
-        <button type="button" className="btn btn-success" onClick={handleSignIn}>
-        {isRegistered ? 'Sign In' : ' Create Account'}
-          </button>
-        <button type="button" className="btn btn-outline-primary" onClick={() => setIsRegistered(!isRegistered)}>
-          {isRegistered ? 'Create an account' : 'Already have an account? Sign In'}
+        <button type="button" className="btn btn-success" onClick={() => handleSignIn('/api/auth/login')}>
+        Sign in         
+         </button>
+        <button type="button" className="btn btn-primary" onClick={() => handleSignIn('/api/auth/create')}>
+        Create Account
         </button>
       </form>
     </main>
