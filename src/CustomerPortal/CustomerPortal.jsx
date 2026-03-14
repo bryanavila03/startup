@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function CustomerPortal({ user, setUser, weather }) {
+    const navigate = useNavigate();
 
   const handleSignOut = () => {
     if (user) {
