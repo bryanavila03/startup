@@ -2,6 +2,7 @@ import React from 'react';
 
 export function SignIn({ setUser,weather }) {
   const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const handleSignIn = () => {
     if (username.trim() !== '') {
@@ -28,7 +29,10 @@ export function SignIn({ setUser,weather }) {
         </div>
         <div>
           <label htmlFor="password" className="form-label">Password</label>
-          <input type="password" id="password" className="form-control" placeholder="Enter your password" />
+          <input type="password" id="password" className="form-control" 
+          placeholder="Enter your password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className="form-check ">
         <input className="form-check-input" type="checkbox" id="remember-me" />
