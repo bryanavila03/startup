@@ -3,12 +3,15 @@ import React from 'react';
 export function SignIn({ setUser,weather }) {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isRegistered, setIsRegistered] = React.useState(false);
 
   const handleSignIn = async () => {
-    const response = await fetch('/api/signin', {
+
+    const endpoint = isRegistered ? '/api/auth/login' : '/api/auth/create';
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email: username, password: password }),
     });
     if (response.ok) {
       setUser(username);
@@ -47,8 +50,13 @@ export function SignIn({ setUser,weather }) {
         <label className="form-check-label" htmlFor="remember-me">Remember Me</label>
         </div>
         <br />
-        <button type="button" className="btn btn-success" onClick={handleSignIn}>Sign In</button> 
-    </form>
+        <button type="button" className="btn btn-success" onClick={handleSignIn}>
+        {isRegistered ? 'Sign In' : ' Create Account'}
+          </button>
+        <button type="button" className="btn btn-outline-primary" onClick={() => setIsRegistered(!isRegistered)}>
+          {isRegistered ? 'Create an account' : 'Already have an account? Sign In'}
+        </button>
+      </form>
     </main>
   );
 }
