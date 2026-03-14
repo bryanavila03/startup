@@ -4,12 +4,23 @@ import { useNavigate } from 'react-router-dom';
 export function CustomerPortal({ user, setUser, weather }) {
     const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    if (user) {
-      setUser(null);
-      localStorage.removeItem('user');
-      window.location.href = '/SignIn';
-    }};
+    React.useEffect(() => {
+      fetch('/api/customer') 
+        .then((response) => {
+          if (!response.ok) {
+            setUser(null);
+            localStorage.removeItem('user');
+            navigate('/SignIn');
+          }
+        });
+    }, []);
+
+  const handleSignOut = async () => {
+    await fetch('/api/auth/logout', {method: 'DELETE'});
+    setUser(null);
+    localStorage.removeItem('user');
+    navigate('/SignIn');
+    };
 
   return (
     <main className="container">
