@@ -4,14 +4,22 @@ export function SignIn({ setUser,weather }) {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const handleSignIn = () => {
-    if (username.trim() !== '') {
+  const handleSignIn = async () => {
+    const response = await fetch('/api/signin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    });
+    if (response.ok) {
       setUser(username);
-      localStorage.setItem('user', username.trim());
+      localStorage.setItem('user', username);
       window.location.href = '/CustomerPortal';
     } else {
-      alert('Please enter a username to sign in.');
-    }};
+      alert('Sign in failed. Please check your credentials and try again.');
+    }
+  };
+    
+    
   return (
     <main className="container">
     <p className="mt-5 mb-5">{weather.outlook}</p>  
