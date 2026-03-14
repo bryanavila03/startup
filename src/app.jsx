@@ -29,22 +29,31 @@ export default function App() {
       outlook: 'Weather data is loading...' 
     });
     React.useEffect(() => {
-      const interval = setInterval(() => {
-        const newTemperature = Math.floor(Math.random() * 40) + 60;
-        const conditions = ['Sunny', 'Cloudy', 'Rainy', 'Windy'];
-        const newCondition = conditions[Math.floor(Math.random() * conditions.length)];
-        const newOutlook = `The weather is currently ${newCondition.toLowerCase()} with a temperature of ${newTemperature} degrees F.`;
-        setWeather({
-          temperature: newTemperature,
-          condition: newCondition,
-          outlook: newOutlook
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=40.2338&longitude=-111.6585&current_weather=true&temperature_unit=fahrenheit')
+        .then(response => response.json())
+        .then(data => {
+          const temp = data.current_weather.temperature;
+          const code = data.current_weather.weathercode;
+          const getCondition = (code) => {
+            if (code === 0) return 'Sunny';
+            if (code >= 1 && code <= 3) return 'Partly Cloudy';
+            if (code >= 45 && code <= 48) return 'Foggy';
+            if (code >= 51 && code <= 57) return 'Drizzle';
+            if (code >= 61 && code <= 67) return 'Rainy';
+            if (code >= 71 && code <= 77) return 'Snowy';
+            if (code >= 80 && code <= 82) return 'Rain Showers';
+            if (code >= 95 && code <= 99) return 'Thunderstorms';
+            return 'Unknown';
+          };
+          const condition = getCondition(code);
+          setWeather({
+            temperature: temp,
+            condition: condition,
+            outlook: `Current weather in Provo: ${condition}, ${temp}°F`
+          });
         });
-       },1000);
-
-
-      return () => clearInterval(interval);
     }, []);
-
+         
   return (
   <BrowserRouter>
   <div className="app bg-dark text-light">
