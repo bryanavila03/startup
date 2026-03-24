@@ -9,7 +9,7 @@ export function CustomerPortal({ user, setUser, weather }) {
 
 
     React.useEffect(() => {
-      fetch('/api/customer') 
+      fetch('/api/customer', { credentials: 'include' })
         .then((response) => {
           if (!response.ok) {
             setUser(null);
@@ -18,7 +18,7 @@ export function CustomerPortal({ user, setUser, weather }) {
           }
         });
 
-        fetch('/api/appointments')
+        fetch('/api/appointments', { credentials: 'include' })
         .then((response) => response.json())
         .then((data) => setAppointments(data))
         .catch((error) => console.error('Error fetching appointments:', error));
@@ -38,6 +38,7 @@ export function CustomerPortal({ user, setUser, weather }) {
     const response = await fetch('/api/appointments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify({ service, date }),
     });
     if (response.ok) {
@@ -50,7 +51,7 @@ export function CustomerPortal({ user, setUser, weather }) {
 
 
   const handleSignOut = async () => {
-    await fetch('/api/auth/logout', {method: 'DELETE'});
+    await fetch('/api/auth/logout', {method: 'DELETE', credentials: 'include'});
     setUser(null);
     localStorage.removeItem('user');
     navigate('/SignIn');
