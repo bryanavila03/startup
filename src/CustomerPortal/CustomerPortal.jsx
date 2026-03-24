@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export function CustomerPortal({ user, setUser, weather }) {
     const navigate = useNavigate();
     const [appointments, setAppointments] = React.useState([]);
-    const [service, setService] = React.useState([]);
+    const [service, setService] = React.useState('');
     const [date, setDate] = React.useState('');
 
 
@@ -58,7 +58,7 @@ export function CustomerPortal({ user, setUser, weather }) {
 
   return (
 
-    
+
     <main className="container">
       <h1 className="mt-5 mb-5">Welcome, {user}!</h1>
     <p className="mt-5 mb-5">{weather.outlook}</p>  
@@ -67,27 +67,35 @@ export function CustomerPortal({ user, setUser, weather }) {
 
       <h2 className="mt-5 mb-5">Customer Portal</h2>
       <p>Welcome to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
-      <p>Current Personal Information</p>
+      <h4 className="mt-5 mb-3">Schedule an Appointment</h4>
+      <div className="mb-3">
+        <select className="form-control mb-3" value={service} onChange={(e) => setService(e.target.value)}>
+          <option value="">Select a service</option>
+          <option value="residential">Residential Pest Control</option>
+          <option value="commercial">Commercial Pest Control</option>
+          <option value="termite">Termite Treatment</option>
+          <option value="rodent">Rodent Control</option>
+          <option value="ant">Ant Control</option>
+        </select>
+        <input type="date" className="form-control" value={date} onChange={(e) => setDate(e.target.value)} />
+        <button type="button" className="btn btn-primary mt-3" onClick={handleSchedule}>Schedule Appointment</button>
+      </div>
 
-      <ul>
-        <li>Name: John Doe</li>
-        <li>Email: john.doe@example.com</li>
-        <li>Phone: (###) ###-####</li>
-        <li>Address: 1234 Elm Street, Phoenix, AZ 85001</li>
-        
-        </ul>
-        <p>Service History</p>
-        <ul>
-        <li>Service 1: Residential Pest Control on MM/DD/YYYY - Status: Completed</li>
-        <li>Service 2: Termite Treatment on MM/DD/YYYY - Status: Completed</li>
-        <li>Service 3: Rodent Control on MM/DD/YYYY - Status: Scheduled</li>
-        </ul>
-        <p>Current Updates</p>
-        <ul>
-        <li>Update 1: Your last service was completed on MM/DD/YYYY. Please rate your experience.</li> 
-        <li>Update 2: New promotions are available! Check out our latest deals on pest control services.</li>
-        </ul>
-        <button type="button" className="btn btn-danger mt-3 mb-3" onClick={handleSignOut}>Sign Out</button>
+      <h5 className="mt-5 mb-3">Your Appointments</h5>
+      <ul className="list-group mb-5">
+        {appointments.length === 0 ? (
+          <li className="list-group-item">No appointments scheduled.</li>
+        ) : (
+          appointments.map((appointment) => (
+            <li key={appointment.id} className="list-group-item">
+              {appointment.service} on {new Date(appointment.date).toLocaleDateString()}
+            </li>
+          ))
+        )}
+      </ul>
+      
+
+      <button type="button" className="btn btn-danger mt-3 mb-3" onClick={handleSignOut}>Sign Out</button>
     </main>
   );
 }
