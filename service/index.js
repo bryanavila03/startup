@@ -102,8 +102,8 @@ apiRouter.post('/appointments', verifyAuthToken, (req, res) => {
 });
 
 
-app.get((_req, res) => {
-  res.sendFile('index.html', { root: './public' });
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
 });
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
