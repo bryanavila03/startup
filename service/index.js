@@ -84,7 +84,25 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.send({ message: 'Logout successful' });
 });
 
-app.get('*', (_req, res) => {
+    let appointments = [];
+
+apiRouter.get('/appointments', verifyAuthToken, (req, res) => {
+    res.json(appointments);
+});
+
+apiRouter.post('/appointments', verifyAuthToken, (req, res) => {
+    const { service, date } = req.body;
+    const appointment = {
+        id: uuid.v4(),
+        service,
+        date,
+    };
+    appointments.push(appointment);
+    res.json(appointment);
+});
+
+
+app.get((_req, res) => {
   res.sendFile('index.html', { root: './public' });
 });
 app.listen(port, () => {
