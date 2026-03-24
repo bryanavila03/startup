@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 export function CustomerPortal({ user, setUser, weather }) {
     const navigate = useNavigate();
+    const [appointments, setAppointments] = React.useState([]);
+    const [service, setService] = React.useState([]);
+    const [date, setDate] = React.useState('');
+
 
     React.useEffect(() => {
       fetch('/api/customer') 
@@ -13,6 +17,16 @@ export function CustomerPortal({ user, setUser, weather }) {
             navigate('/SignIn');
           }
         });
+
+        fetch('/api/appointments')
+        .then((response) => response.json())
+        .then((data) => setAppointments(data))
+        .catch((error) => console.error('Error fetching appointments:', error));
+
+
+
+
+
     }, []);
 
   const handleSignOut = async () => {
