@@ -83,6 +83,10 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.clearCookie(authCookieName);
     res.send({ message: 'Logout successful' });
 });
+
+app.get('*', (_req, res) => {
+  res.sendFile('index.html', { root: './public' });
+});
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
