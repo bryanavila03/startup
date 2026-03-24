@@ -29,6 +29,26 @@ export function CustomerPortal({ user, setUser, weather }) {
 
     }, []);
 
+
+  const handleSchedule = async () => {
+    if (!service || !date) {
+      alert('Please select a service and date.');
+      return;
+    }
+    const response = await fetch('/api/appointments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service, date }),
+    });
+    if (response.ok) {
+      const newAppointment = await response.json();
+      setAppointments([...appointments, newAppointment]);
+      alert('Appointment scheduled successfully!');
+    }
+  };
+
+
+
   const handleSignOut = async () => {
     await fetch('/api/auth/logout', {method: 'DELETE'});
     setUser(null);
@@ -37,6 +57,8 @@ export function CustomerPortal({ user, setUser, weather }) {
     };
 
   return (
+
+    
     <main className="container">
       <h1 className="mt-5 mb-5">Welcome, {user}!</h1>
     <p className="mt-5 mb-5">{weather.outlook}</p>  
