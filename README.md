@@ -113,12 +113,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Created Node.js/Express backend (index.js), that handled my app logic. Used cookie-parser, bcryptjs, and uuid to handle authentication.
+- [x] **Static middleware for frontend** - Used express.static('public') for React frontend.
+- [x] **Calls to third party endpoints** -  Used Open-Meteo API using Provo weather displaying the conditions and temperature.
+- [x] **Backend service endpoints** - Example of some endpoints:  /api: GET /ping, POST /auth/create, POST /auth/login, DELETE /auth/logout, GET /customer, GET /appointments, POST /appointments, GET /contact, and POST /contact.
+- [x] **Frontend calls service endpoints** - CustomerPortal component fetched from other endpoints and posted the data when a user made an appointment or updated their contact information.
+- [x] **Supports registration, login, logout, and restricted endpoint** -Endpoints were created to handle this. Protected and restricted endpoints were made.
 
 ## 🚀 DB deliverable
 
