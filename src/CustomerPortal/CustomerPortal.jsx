@@ -6,6 +6,9 @@ export function CustomerPortal({ user, setUser, weather }) {
     const [appointments, setAppointments] = React.useState([]);
     const [service, setService] = React.useState('');
     const [date, setDate] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [phone, setPhone] = React.useState('');
+    const [address, setAddress] = React.useState('');
 
 
     React.useEffect(() => {
@@ -23,9 +26,14 @@ export function CustomerPortal({ user, setUser, weather }) {
         .then((data) => setAppointments(data))
         .catch((error) => console.error('Error fetching appointments:', error));
 
-
-
-
+        fetch('/api/contact', { credentials: 'include' })
+          .then((response) => response.json())
+          .then((data) => {
+            setName(data.name);
+            setPhone(data.phone);
+            setAddress(data.address);
+          })
+          .catch((error) => console.error('Error fetching contact information:', error));
 
     }, []);
 
@@ -48,6 +56,17 @@ export function CustomerPortal({ user, setUser, weather }) {
     }
   };
 
+  const handleSaveContact = async () => {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ name, phone, address }),
+    });
+    if (response.ok) {
+      alert('Contact information saved successfully!');
+    }
+  };
 
 
   const handleSignOut = async () => {
@@ -94,7 +113,20 @@ export function CustomerPortal({ user, setUser, weather }) {
           ))
         )}
       </ul>
-      
+      <h4 className="mt-5 mb-3">Contact Information</h4>
+      <div className="mb-3">
+        <label className="form-label">Name</label>
+        <input type="text" className="form-control mb-3" value={name} onChange={(e) => setName(e.target.value)} />
+      </div>
+      <div className="mb-3">
+        <label className="form-label">Phone</label>
+        <input type="tel" className="form-control mb-3" value={phone} onChange={(e) => setPhone(e.target.value)} />
+      </div>
+      <div className="mb-3">
+        <label className="form-label">Address</label>
+        <input type="text" className="form-control mb-3" value={address} onChange={(e) => setAddress(e.target.value)} />
+      </div>
+      <button type="button" className="btn btn-primary mt-3 mb-3" onClick={handleSaveContact}>Save Contact Information</button>
 
       <button type="button" className="btn btn-danger mt-3 mb-3" onClick={handleSignOut}>Sign Out</button>
     </main>
