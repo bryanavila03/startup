@@ -122,11 +122,11 @@ export function CustomerPortal({ user, setUser, weather }) {
       <div className="mb-3">
         <select className="form-control mb-3" value={service} onChange={(e) => setService(e.target.value)}>
           <option value="">Select a service</option>
-          <option value="residential">Residential Pest Control</option>
-          <option value="commercial">Commercial Pest Control</option>
-          <option value="termite">Termite Treatment</option>
-          <option value="rodent">Rodent Control</option>
-          <option value="ant">Ant Control</option>
+          <option value="Residential Service">Residential Pest Control</option>
+          <option value="Commercial Service">Commercial Pest Control</option>
+          <option value="Termite Treatment">Termite Treatment</option>
+          <option value="Rodent Control">Rodent Control</option>
+          <option value="Ant Control">Ant Control</option>
         </select>
         <input type="date" className="form-control" value={date} onChange={(e) => setDate(e.target.value)} />
         <button type="button" className="btn btn-primary mt-3" onClick={handleSchedule}>Schedule Appointment</button>

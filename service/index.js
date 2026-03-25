@@ -58,6 +58,7 @@ apiRouter.post('/auth/login', async(req, res) => {
 
     const token = uuid.v4();
     user.token = token;
+    await DB.updateUser(user);
     res.cookie(authCookieName, token, 
       { httpOnly: true, expires: new Date(Date.now() + 24 * 60 * 60 * 1000) });
     res.send({ email: user.email, message: 'Login successful' });
