@@ -9,6 +9,7 @@ export function CustomerPortal({ user, setUser, weather }) {
     const [name, setName] = React.useState('');
     const [phone, setPhone] = React.useState('');
     const [address, setAddress] = React.useState('');
+    const [messages, setMessages] = React.useState([]);
 
 
     React.useEffect(() => {
@@ -36,6 +37,28 @@ export function CustomerPortal({ user, setUser, weather }) {
           .catch((error) => console.error('Error fetching contact information:', error));
 
     }, []);
+
+    React.useEffect(() => {
+      const mockMessage = [
+        "John just scheduled a termite treatment for next week.",
+        "Emily updated her contact information yesterday.",
+        "Michael has an appointment for rodent control tomorrow.",
+        "Sarah just signed up for residential pest control.",
+        "David rescheduled his appointment for next month.",
+        "Jessica just signed out of the customer portal.",
+      ];
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index < mockMessage.length) {
+          setMessages((prev) => [...prev, mockMessage[index]]);
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 5000);
+      return () => clearInterval(interval);
+    }, []);
+      
 
 
   const handleSchedule = async () => {
@@ -87,6 +110,14 @@ export function CustomerPortal({ user, setUser, weather }) {
 
       <h2 className="mt-5 mb-5">Customer Portal</h2>
       <p>Welcome to your customer portal. Here you can manage your appointments, view service history, and update your personal information.</p>
+      <h4 className="mt-5 mb-3">Live Updates</h4>
+      <ul className="list-group mb-5">
+        {messages.map((message, index) => (
+          <li key={index} className="list-group-item">{message}</li>
+        ))}
+      </ul>
+      
+      
       <h4 className="mt-5 mb-3">Schedule an Appointment</h4>
       <div className="mb-3">
         <select className="form-control mb-3" value={service} onChange={(e) => setService(e.target.value)}>
