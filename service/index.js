@@ -91,16 +91,18 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 
 apiRouter.get('/appointments', verifyAuthToken, async (req, res) => {
-    const appointments = await DB.getAppointments();
+    const user = await DB.getUserByToken(req.cookies[authCookieName]);
+    const appointments = await DB.getAppointments(user.email);
     res.json(appointments);
 });
 
 apiRouter.post('/appointments', verifyAuthToken, async (req, res) => {
-    const { service, date } = req.body;
+    const user = await DB.getUserByToken(req.cookies[authCookieName]);
     const appointment = {
         id: uuid.v4(),
-        service,
-        date,
+        service: req.body.service,
+        date: req.body.date,
+        email: user.email,
     };
     await DB.addAppointment(appointment);
     res.json(appointment);

@@ -38,16 +38,16 @@ async function updateUser(user) {
 async function addAppointment(appointment) {
   await appointmentsCollection.insertOne(appointment);
 }
-async function getAppointments() {
-  return appointmentsCollection.find().toArray();
+async function getAppointments(email) {
+  return appointmentsCollection.find({ email: email }).toArray();
 }
 
 async function saveContact(contact) {
-  await contactCollection.updateOne({}, { $set: contact }, { upsert: true });
+  await contactCollection.updateOne({ email: contact.email }, { $set: contact }, { upsert: true });
 }
 
-async function getContact() {
-  return contactCollection.findOne({});
+async function getContact(email) {
+  return contactCollection.findOne({ email: email });
 }
 
 module.exports = {
