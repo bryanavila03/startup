@@ -24,15 +24,15 @@ export function CustomerPortal({ user, setUser, weather }) {
 
         fetch('/api/appointments', { credentials: 'include' })
         .then((response) => response.json())
-        .then((data) => setAppointments(data))
+        .then((data) => setAppointments(data || []))
         .catch((error) => console.error('Error fetching appointments:', error));
 
         fetch('/api/contact', { credentials: 'include' })
           .then((response) => response.json())
           .then((data) => {
-            setName(data.name);
-            setPhone(data.phone);
-            setAddress(data.address);
+            setName(data.name || '');
+            setPhone(data.phone || '');
+            setAddress(data.address || '');
           })
           .catch((error) => console.error('Error fetching contact information:', error));
 
