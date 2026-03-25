@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
-
+const DB = require('./database.js');
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 const app = express();
@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
-let users = [];
 
 const authCookieName = 'token';
 
@@ -19,14 +18,14 @@ const authCookieName = 'token';
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-apiRouter.get('/ping', (req, res) => {
+apiRouter.get('/ping', async (req, res) => {
   res.json({ message: 'Server working!' });
 });
 
-apiRouter.post('/auth/create', (req, res) => {
+apiRouter.post('/auth/create', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    const existingUser = users.find((user) => user.email === email);
+    const existingUser = await DB.getUser(email);
     if (existingUser) {
         return res.status(409).json({ message: 'User already exists' });
     }
@@ -38,14 +37,16 @@ apiRouter.post('/auth/create', (req, res) => {
         passwordHash: passwordHash,
         id: uuid.v4(),
     };
-    users.push(user);
+
+    await DB.addUser(user);
+
     res.send({ email: user.email, message: 'User created successfully' });
 });
 
-apiRouter.post('/auth/login', (req, res) => {
+apiRouter.post('/auth/login', async(req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    const user = users.find((user) => user.email === email);
+    const user = await DB.getUser(email);
 
     if (!user) {
         return res.status(401).json({ message: 'Invalid email or password' });
@@ -62,54 +63,57 @@ apiRouter.post('/auth/login', (req, res) => {
     res.send({ email: user.email, message: 'Login successful' });
 });
 
-function verifyAuthToken(req, res, next) {
+async function verifyAuthToken(req, res, next) {
     const token = req.cookies[authCookieName];
-    const user = users.find((user) => user.token === token);
+    const user = await DB.getUserByToken(token);
     if (!user) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
     next();
 }
-apiRouter.get('/customer', verifyAuthToken, (req, res) => {
+apiRouter.get('/customer', verifyAuthToken, async (req, res) => {
     res.send({ data: 'Welcome to the Customer Portal!' });
 });
 
-apiRouter.delete('/auth/logout', (req, res) => {
+apiRouter.delete('/auth/logout', async (req, res) => {
     const token = req.cookies[authCookieName];
-    const user = users.find((user) => user.token === token);
+    const user = await DB.getUserByToken(token);
     if (user) {
-        delete user.token;
+        await DB.updateUser({ ...user, token: null });
     }
+
+
+
     res.clearCookie(authCookieName);
     res.send({ message: 'Logout successful' });
 });
 
-    let appointments = [];
 
-apiRouter.get('/appointments', verifyAuthToken, (req, res) => {
+apiRouter.get('/appointments', verifyAuthToken, async (req, res) => {
+    const appointments = await DB.getAppointments();
     res.json(appointments);
 });
 
-apiRouter.post('/appointments', verifyAuthToken, (req, res) => {
+apiRouter.post('/appointments', verifyAuthToken, async (req, res) => {
     const { service, date } = req.body;
     const appointment = {
         id: uuid.v4(),
         service,
         date,
     };
-    appointments.push(appointment);
+    await DB.addAppointment(appointment);
     res.json(appointment);
 });
 
-let contactInfo = {};
 
-apiRouter.get('/contact', verifyAuthToken, (req, res) => {
-    res.json(contactInfo);
+apiRouter.get('/contact', verifyAuthToken, async (req, res) => {
+    const contact = await DB.getContact();
+    res.json(contact);
 });
-apiRouter.post('/contact', verifyAuthToken, (req, res) => {
+apiRouter.post('/contact', verifyAuthToken, async (req, res) => {
     const { name, phone, address } = req.body;
-    contactInfo = { name, phone, address };
-    res.json(contactInfo);
+    await DB.saveContact({ name, phone, address });
+    res.json({ name, phone, address });
 });
 
 app.use((_req, res) => {
