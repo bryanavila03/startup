@@ -36,12 +36,13 @@ apiRouter.post('/auth/create', async (req, res) => {
         email: email,
         passwordHash: passwordHash,
         id: uuid.v4(),
+        token : uuid.v4(),
     };
 
     await DB.addUser(user);
-
+    res.cookie(authCookieName, user.token, { httpOnly: true, expires: new Date(Date.now() + 24 * 60 * 60 * 1000) });
     res.send({ email: user.email, message: 'User created successfully' });
-});
+     });
 
 apiRouter.post('/auth/login', async(req, res) => {
     const email = req.body.email;
