@@ -110,12 +110,14 @@ apiRouter.post('/appointments', verifyAuthToken, async (req, res) => {
 
 
 apiRouter.get('/contact', verifyAuthToken, async (req, res) => {
-    const contact = await DB.getContact();
-    res.json(contact);
+    const user = await DB.getUserByToken(req.cookies[authCookieName]);
+    const contact = await DB.getContact(user.email);
+    res.json(contact || {});
 });
 apiRouter.post('/contact', verifyAuthToken, async (req, res) => {
+    const user = await DB.getUserByToken(req.cookies[authCookieName]);
     const { name, phone, address } = req.body;
-    await DB.saveContact({ name, phone, address });
+    await DB.saveContact({ ...{ name, phone, address }, email: user.email });
     res.json({ name, phone, address });
 });
 
