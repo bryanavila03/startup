@@ -101,6 +101,16 @@ apiRouter.post('/appointments', verifyAuthToken, (req, res) => {
     res.json(appointment);
 });
 
+let contactInfo = {};
+
+apiRouter.get('/contact', verifyAuthToken, (req, res) => {
+    res.json(contactInfo);
+});
+apiRouter.post('/contact', verifyAuthToken, (req, res) => {
+    const { name, phone, address } = req.body;
+    contactInfo = { name, phone, address };
+    res.json(contactInfo);
+});
 
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
