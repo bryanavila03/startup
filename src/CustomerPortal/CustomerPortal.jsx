@@ -39,24 +39,15 @@ export function CustomerPortal({ user, setUser, weather }) {
     }, []);
 
     React.useEffect(() => {
-      const mockMessage = [
-        "John just scheduled a termite treatment for next week.",
-        "Emily updated her contact information yesterday.",
-        "Michael has an appointment for rodent control tomorrow.",
-        "Sarah just signed up for residential pest control.",
-        "David rescheduled his appointment for next month.",
-        "Jessica just signed out of the customer portal.",
-      ];
-      let index = 0;
-      const interval = setInterval(() => {
-        if (index < mockMessage.length) {
-          setMessages((prev) => [...prev, mockMessage[index]]);
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 5000);
-      return () => clearInterval(interval);
+
+      const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+      const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+      socket.onmessage = (event) => {
+        const msg = JSON.parse(event.data);
+        setMessages((prev) => [...prev, msg.message]);
+      };
+      return () => socket.close();
     }, []);
       
 
