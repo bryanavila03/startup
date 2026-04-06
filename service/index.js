@@ -125,9 +125,11 @@ apiRouter.post('/contact', verifyAuthToken, async (req, res) => {
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+
+
+const {peerProxy} = require('./peerProxy.js');
+const httpServer = app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
-
-
+peerProxy(httpServer);
 
