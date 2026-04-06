@@ -63,9 +63,18 @@ export function CustomerPortal({ user, setUser, weather }) {
       credentials: 'include',
       body: JSON.stringify({ service, date }),
     });
+
     if (response.ok) {
       const newAppointment = await response.json();
       setAppointments([...appointments, newAppointment]);
+
+      const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+      const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        socket.onopen = () => {
+          socket.send(JSON.stringify({
+            message: `${user} scheduled a ${service} appointment!`
+          }));
+        };
       alert('Appointment scheduled successfully!');
     }
   };
