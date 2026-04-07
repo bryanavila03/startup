@@ -44,7 +44,7 @@ export function CustomerPortal({ user, setUser, weather }) {
       const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
       socket.onmessage = (event) => {
-        const msg = JSON.parse(event.data);
+        const msg = JSON.parse(event.data.toString());
         setMessages((prev) => [...prev, msg.message]);
       };
       return () => socket.close();
