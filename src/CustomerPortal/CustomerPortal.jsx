@@ -43,9 +43,10 @@ export function CustomerPortal({ user, setUser, weather }) {
       const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
       const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
-      socket.onmessage = (event) => {
-        const msg = JSON.parse(event.data.toString());
-        setMessages((prev) => [...prev, msg.message]);
+      socket.onmessage = async (event) => {
+        const text = event.data instanceof Blob ? await event.data.text() : event.data;
+        const message = JSON.parse(text);
+        setMessages((prev) => [...prev, message.message]);
       };
       return () => socket.close();
     }, []);
