@@ -140,7 +140,7 @@ export function CustomerPortal({ user, setUser, weather }) {
         ) : (
           appointments.map((appointment) => (
             <li key={appointment.id} className="list-group-item">
-              {appointment.service} on {new Date(appointment.date).toLocaleDateString()}
+              {appointment.service} on {new Date(appointment.date + 'T00:00:00').toLocaleDateString()}
             </li>
           ))
         )}
