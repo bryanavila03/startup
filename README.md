@@ -130,8 +130,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** -  Created the PeerProxy.js file in the service folder. This connects the WebSocket server to my HTTP server, which sends messages between users.
+- [x] **Frontend makes WebSocket connection** -  My CustomerPortal connects to my WebSocket and uses ws/wss depending if the page is http/https.
+- [x] **Data sent over WebSocket connection** - When a user schedules an appointment, a message is sent with the user's email and the service that was scheduled. 
+- [x] **WebSocket data displayed** -  Users get real time updates in the Live Updates section in the Customer Portal when a user schedules an appointment.
+- [x] **Application is fully functional** -  I replaced my hardcoded messages with the WebSocket connection. Everything is functional with no placeholders.
